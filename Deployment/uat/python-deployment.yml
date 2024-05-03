@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: iodinehanifan/python_todo_app:v1
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "1024m"
+        ports:
+        - containerPort: 8000

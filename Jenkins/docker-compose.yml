@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    ports:
+      - "8090:8080"
+      - "50000:50000"
+    volumes:
+      - type: bind
+        source: C:\jenkins_data
+        target: /var/jenkins_home
+    networks:
+      - jenkinsnet
+
+networks:
+  jenkinsnet:
